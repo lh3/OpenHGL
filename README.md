@@ -1,5 +1,33 @@
 ## A collection of high-quality human assemblies
 
+### Data files
+
+Primary data are hosted [at Zenodo][13948741]:
+
+ * `human579.agc`: [AGC][agc] archive of assembly sequences
+ * `human579.fmr.gz`: BWT sequence in the dynamic [ropebwt3][rb3] format
+ * `human579.fmd.ssa.gz`: sampled suffix array
+ * `human579.fmd.len.gz`: contig names and lengths
+ * `human579.meta.tsv`: metadata including 1) assembly name, 2) the sex
+   chromosome in the assembly, 3) sample name, 4) 1000 Genomes Project
+   population code, 5) Simons Genomes Diversity Project region code and 6)
+   sample sex.
+
+Here are sample command lines to work with the data files:
+```sh
+# retrieve sequences
+agc listset human579.agc  # list genomes
+agc getset human579.agc 200149_HG02523.pat > HG02523.pat.fa # extract one genome
+
+# prepare the FM-index
+gzip -d human579.fmr.gz
+gzip -d human579.fmd.ssa.gz
+ropebwt3 build -i human579.fmr -do human579.fmd   # convert to faster the static BWT format
+
+# query the FM-index
+echo CCAGGACCCCTGTCCAGTGTTAGACAGGAGCATGCAG | ropebwt3 sw -eN200 -Lm10 human472.fmd -
+```
+
 ### Data source
 
 | Name             | Version | nHap | Description |
@@ -16,7 +44,7 @@
 Criteria in sample selection:
 
  * Publicly available, though the data use policy may vary between sources
- * Requiring accurate long reads such as PacBio HiFi or the latest ONT R10.4.1
+ * Requiring PacBio HiFi for base accuracy
  * Requiring ultra-long Nanopore reads for assembly through difficult regions
  * Requiring trio or Hi-C data for chromosome-scale phasing
  * Independent samples
@@ -53,6 +81,9 @@ name.  The number in the middle indicates haplotype with 0 in primary assembly,
  * NA20806 has X and Y chromosomes mispartitioned to the same haplotype
  * HG02145 has fragmented Y chromosome (see HPRC [noteworthy samples][hprc-noteworthy])
 
+[zenodo]: https://zenodo.org/records/13948741
+[agc]: https://github.com/refresh-bio/agc
+[rb3]: https://github.com/lh3/ropebwt3
 [chm13]: https://github.com/marbl/CHM13
 [cn1]: https://www.nature.com/articles/s41422-023-00849-5
 [ksa001]: https://www.nature.com/articles/s41597-024-04121-2
