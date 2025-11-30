@@ -1,8 +1,7 @@
 ## A collection of high-quality human assemblies
 
-### Data files
-
-Primary data are hosted [at Zenodo][13948741]:
+This is a collection of high-quality human assemblies. The primary data is
+hosted [at Zenodo][zenodo]:
 
  * `human579.agc`: [AGC][agc] archive of assembly sequences
  * `human579.fmr.gz`: BWT sequence in the dynamic [ropebwt3][rb3] format
@@ -24,10 +23,10 @@ gzip -d human579.fmr.gz human579.fmd.ssa.gz       # decompression
 ropebwt3 build -i human579.fmr -do human579.fmd   # convert to the faster static format
 
 # query the FM-index
-echo CCAGGACCCCTGTCCAGTGTTAGACAGGAGCATGCAG | ropebwt3 sw -eN200 -Lm10 human472.fmd -
+echo CCAGGACCCCTGTCCAGTGTTAGACAGGAGCATGCAG | ropebwt3 sw -eN200 -Lm10 human579.fmd -
 ```
 
-### Data source
+## Data source
 
 | Name             | Version | nHap | Description |
 |:-----------------|:--------|-----:|:------------|
@@ -54,7 +53,7 @@ Additional procedure:
    such that Y is placed in hap1 and X in hap2. HPRC samples were processed the
    same way by the consortium.
 
-### Naming convention
+## Naming convention
 
 A sample name matches regular expression `([0-9]{6})_([A-Z0-9]+)\.(pri|pat|mat|hap1|hap2)`.
 The leading digits are a unique identifier for the contig set. The alphanumeric
@@ -73,7 +72,7 @@ corresponds to the sample name and the last field to the contig or chromosome
 name.  The number in the middle indicates haplotype with 0 in primary assembly,
 1 for paternal or haplotype 1, and 2 for maternal or haplotype 2.
 
-### Known issues
+## Known issues
 
  * HG002 from HPRC and CHM13 share the same Y chromosome
  * HG00272 has a ~50Mb inversion misassembly on the X chromosome
