@@ -1,4 +1,4 @@
-## A collection of high-quality human assemblies
+# A collection of high-quality human assemblies
 
 This is a collection of high-quality human assemblies. The primary data is
 hosted [at Zenodo][zenodo]:
