@@ -13,16 +13,15 @@ Primary data are hosted [at Zenodo][13948741]:
    population code, 5) Simons Genomes Diversity Project region code and 6)
    sample sex.
 
-Here are sample command lines to work with the data files:
+Here are example command lines to work with the data files:
 ```sh
 # retrieve sequences
 agc listset human579.agc  # list genomes
 agc getset human579.agc 200149_HG02523.pat > HG02523.pat.fa # extract one genome
 
 # prepare the FM-index
-gzip -d human579.fmr.gz
-gzip -d human579.fmd.ssa.gz
-ropebwt3 build -i human579.fmr -do human579.fmd   # convert to faster the static BWT format
+gzip -d human579.fmr.gz human579.fmd.ssa.gz       # decompression
+ropebwt3 build -i human579.fmr -do human579.fmd   # convert to the faster static format
 
 # query the FM-index
 echo CCAGGACCCCTGTCCAGTGTTAGACAGGAGCATGCAG | ropebwt3 sw -eN200 -Lm10 human472.fmd -
