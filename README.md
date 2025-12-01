@@ -1,7 +1,7 @@
-# A collection of high-quality human assemblies
+# A collection of high-quality human genomes
 
-This is a collection of high-quality human assemblies. The primary data is
-hosted [at Zenodo][zenodo]:
+This collection consists of 579 human assemblies with 1.7 terabases. The primary
+data is hosted [at Zenodo][zenodo]:
 
  * `human579.agc`: [AGC][agc] archive of assembly sequences
  * `human579.fmr.gz`: BWT sequence in the dynamic [ropebwt3][rb3] format
@@ -26,9 +26,9 @@ ropebwt3 build -i human579.fmr -do human579.fmd   # convert to the faster static
 echo CCAGGACCCCTGTCCAGTGTTAGACAGGAGCATGCAG | ropebwt3 sw -eN200 -Lm10 human579.fmd -
 ```
 
-## Data source
+## Data sources
 
-| Name             | Version | nHap | Description |
+| Name             | Version | nAsm | Description |
 |:-----------------|:--------|-----:|:------------|
 |[CHM13][chm13]    |2.0      |1     |Analysis set with HG002 chrY and rCRS chrM|
 |[CN1][cn1]        |1.0.1    |2     |Chinese Han|
@@ -78,6 +78,11 @@ name.  The number in the middle indicates haplotype with 0 in primary assembly,
  * HG00272 has a ~50Mb inversion misassembly on the X chromosome
  * NA20806 has X and Y chromosomes mispartitioned to the same haplotype
  * HG02145 has fragmented Y chromosome (see HPRC [noteworthy samples][hprc-noteworthy])
+
+## ChangeLogs
+
+ * 4.0: added I002C, KOREF1 and APR; updated YAO to v2.0
+ * 3.0: updated HPRC assemblies to r2-v1.0.1
 
 [zenodo]: https://zenodo.org/records/13948741
 [agc]: https://github.com/refresh-bio/agc
