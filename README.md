@@ -1,11 +1,11 @@
 # A collection of high-quality human genomes
 
-This collection consists of 579 human assemblies with 1.7 terabases. The primary
+This collection includes 579 human genome assemblies with 1.7 terabases. The primary
 data is hosted [at Zenodo][zenodo]:
 
  * `human579.agc`: [AGC][agc] archive of assembly sequences
- * `human579.fmr.gz`: BWT sequence in the dynamic [ropebwt3][rb3] format
- * `human579.fmd.ssa.gz`: sampled suffix array
+ * `human579.fmr.gz`: BWT sequence in the dynamic [ropebwt3][rb3] format (gzipped)
+ * `human579.fmd.ssa.gz`: sampled suffix array (gzipped)
  * `human579.fmd.len.gz`: contig names and lengths
  * `human579.meta.tsv`: metadata including 1) assembly name, 2) the sex
    chromosome in the assembly, 3) sample name, 4) 1000 Genomes Project
@@ -19,7 +19,7 @@ agc listset human579.agc  # list genomes
 agc getset human579.agc 200149_HG02523.pat > HG02523.pat.fa # extract one genome
 
 # prepare the FM-index
-gzip -d human579.fmr.gz human579.fmd.ssa.gz       # decompression
+gzip -d human579.fmr.gz human579.fmd.ssa.gz       # decompression (keep .fmd.len.gz)
 ropebwt3 build -i human579.fmr -do human579.fmd   # convert to the faster static format
 
 # query the FM-index
