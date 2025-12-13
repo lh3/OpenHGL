@@ -1,7 +1,7 @@
 ## Table of Contents
 
 - [Introduction](#intro)
-- [Using the Data](#usage)
+- [Using OpenHGL Data](#usage)
   - [File description](#file)
   - [Retrieving genomic sequences](#getseq)
   - [Finding sequence matches](#map)
@@ -23,12 +23,12 @@ The dataset currently consists of 579 huamn genomes with 1.7 trillion
 basepairs. The primary data is archived [at Zenodo][zenodo] and also hosted at
 the [AWS Open Data Registry][aws-open] along with derived data.
 
-## <a name="usage"></a>Using the Data
-
-At present, OpenHGL provides genome sequences in the [AGC][agc] format and
-the corresponding FM-index in the [ropebwt3][rb3] format.
+## <a name="usage"></a>Using OpenHGL Data
 
 ### <a name="file"></a>File description
+
+At present, OpenHGL provides genome sequences in the [AGC][agc] format and
+the corresponding FM-index in the [ropebwt3][rb3] format:
 
  * `human579.agc`: [AGC][agc] archive of assembly sequences
  * `human579.fmr.gz`: BWT sequence in the dynamic [ropebwt3][rb3] format (gzipped)
@@ -61,8 +61,8 @@ agc getctg human579.agc 200125_HG02129.pat > HG02129.pat.fa
 agc getctg human579.agc HG02129#1#CM085853.1:0-99
 ```
 **Importantly**, with AGC, the coordinate of the first base is 0. *start*-*end*
-is a closed interval. This is different from common tools like samtools faidx
-which use closed intervals but put the first base at coodinate 1.
+is a closed interval. This is different from common tools like `samtools faidx`
+which uses closed intervals but puts the first base at coodinate 1.
 
 ### <a name="map"></a>Finding sequence matches
 
