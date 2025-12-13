@@ -1,10 +1,15 @@
 ## Table of Contents
 
 - [Introduction](#intro)
-- [Usage](#usage)
+- [Using the Data](#usage)
+  - [File description](#file)
   - [Retrieving genomic sequences](#getseq)
   - [Finding sequence matches](#map)
 - [Data Description](#data)
+  - [Data sources](#src)
+  - [Naming convention](#name)
+  - [Known issues](#issue)
+  - [ChangeLogs](#change)
 
 ## <a name="intro"></a>Introduction
 
@@ -18,7 +23,7 @@ The dataset currently consists of 579 huamn genomes with 1.7 trillion
 basepairs. The primary data is archived [at Zenodo][zenodo] and also hosted at
 the [AWS Open Data Registry][aws-open] along with derived data.
 
-## <a name="usage"></a>Usage
+## <a name="usage"></a>Using the Data
 
 At present, OpenHGL provides genome sequences in the [AGC][agc] format and
 the corresponding FM-index in the [ropebwt3][rb3] format.
@@ -83,7 +88,7 @@ echo CCAGGACCCCTGTCCAGTGTTAGACAGGAGCATGCAG | ropebwt3 mem -L human579.fmd -
 echo CCAGGACCCCTGTCCAGTGTTAGACAGGAGCATGCAG | ropebwt3 sw -eN200 -Lm10 human579.fmd -
 ```
 
-## <a name="data"></a>Data
+## <a name="data"></a>Data Description
 
 ### <a name="src"></a>Data sources
 
