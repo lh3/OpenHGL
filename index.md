@@ -117,6 +117,10 @@ Additional procedure:
    such that Y is placed in hap1 and X in hap2. HPRC samples were processed the
    same way by the consortium.
 
+Overview of the workflow is shown below:
+
+<img src="images/workflow" style="width:100%"/>
+
 ### <a name="name"></a>Naming convention
 
 A sample name matches regular expression `([0-9]{6})_([A-Z0-9]+)\.(pri|pat|mat|hap1|hap2)`.
