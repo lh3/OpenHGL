@@ -5,6 +5,7 @@
   - [File description](#file)
   - [Retrieving genomic sequences](#getseq)
   - [Finding sequence matches](#map)
+  - [More use cases](#moreuse)
 - [Data Description](#data)
   - [Data sources](#src)
   - [Naming convention](#name)
@@ -88,6 +89,21 @@ echo CCAGGACCCCTGTCCAGTGTTAGACAGGAGCATGCAG | ropebwt3 mem -L human579.fmd -
 echo CCAGGACCCCTGTCCAGTGTTAGACAGGAGCATGCAG | ropebwt3 sw -eN200 -Lm10 human579.fmd -
 ```
 
+### <a name="moreuse"></a>More use cases
+
+The following command lines show more use cases:
+```sh
+# Locate up to 100 exact matches
+ropebwt3 mem -t16 -p100 human579.fmd seq.fa.gz > out.bed
+
+# Find non-human sequences/contaminations
+ropebwt3 mem -t16 -l101 --gap=10k human579.fmd seq.fastq.gz > out.bed
+
+# Count 101-mers occuring over 20 times per genome on average
+ropebwt3 kount -k101 -m 11580 human579.fmd > k101-20.txt
+```
+The [ropebwt3 paper][rb3-paper] provides additional examples.
+
 ## <a name="data"></a>Data Description
 
 ### <a name="src"></a>Data sources
@@ -159,6 +175,7 @@ name.  The number in the middle indicates haplotype with 0 in primary assembly,
 [agc]: https://github.com/refresh-bio/agc
 [agc-rel]: https://github.com/refresh-bio/agc/releases
 [rb3]: https://github.com/lh3/ropebwt3
+[rb3-paper]: https://pubmed.ncbi.nlm.nih.gov/39607778
 [chm13]: https://github.com/marbl/CHM13
 [cn1]: https://www.nature.com/articles/s41422-023-00849-5
 [ksa001]: https://www.nature.com/articles/s41597-024-04121-2
