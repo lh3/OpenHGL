@@ -119,7 +119,7 @@ Additional procedure:
 
 Overview of the workflow is shown below:
 
-<img src="images/workflow.png" style="width:100%"/>
+<img src="images/workflow.png" style="width:100%; background-color:#dedede;"/>
 
 ### <a name="name"></a>Naming convention
 
