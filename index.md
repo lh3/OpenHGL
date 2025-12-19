@@ -1,6 +1,7 @@
 ## Table of Contents
 
 - [Introduction](#intro)
+- [Downloading OpenHGL Data](#download)
 - [Using OpenHGL Data](#usage)
   - [File description](#file)
   - [Retrieving genomic sequences](#getseq)
@@ -21,8 +22,27 @@ consistent naming and uniform formats across datasets, supporting efficient
 subsequence retrieval and approximate string search.
 
 The dataset currently consists of 579 huamn genomes with 1.7 trillion
-basepairs. The primary data is archived [at Zenodo][zenodo] and also hosted at
-the [AWS Open Data Registry][aws-open] along with derived data.
+basepairs. The full dataset is [available at AWS][aws-open] as [Open
+Data][open-reg]. The primary data is also archieved [at Zenodo][zenodo].
+
+## <a name="download"></a>Downloading OpenHGL Data
+
+OpenHGL is available in S3 bucket `s3://openhgl`. The fastest way to download
+bulk data is to use the AWS command-line interface (aws-cli), for example, with:
+```sh
+# list all files (there are tens of files in total)
+aws s3 ls --no-sign-request --recursive s3://openhgl
+
+# dowload a file (24.8MB in size)
+aws s3 cp --no-sign-request s3://openhgl/misc/mtb/mtb152.tar.gz .
+```
+If you are not familiar with aws-cli, you can [browse][aws-open] the files,
+find their links and download with `wget` or `curl`.
+
+Alternatively, you can download primary data [from Zenodo][zenodo]. However,
+due to limited space provided by Zenodo, derived files (e.g. FM-index in the
+static format) are not available. Downloading from Zenodo is much slower than
+from AWS.
 
 ## <a name="usage"></a>Using OpenHGL Data
 
@@ -47,7 +67,7 @@ page][agc-rel]. After copying the `agc` binary to your `PATH`, you can download
 and retrieve sequences with
 ```sh
 # download AGC archive
-wget https://zenodo.org/records/17772289/files/human579.agc
+wget https://openhgl.s3.us-east-1.amazonaws.com/human/human579/human579.agc
 
 # list assembly names
 agc listset human579.agc
@@ -74,13 +94,9 @@ git clone https://github.com/lh3/ropebwt3
 cd ropebwt3; make               # add "omp=0" if you see errors
 
 # download FM-index
-wget https://zenodo.org/records/17772289/files/human579.fmr.gz
-wget https://zenodo.org/records/17772289/files/human579.fmd.ssa.gz
-wget https://zenodo.org/records/17772289/files/human579.fmd.len.gz
-
-# prepare the FM-index
-gzip -d human579.fmr.gz human579.fmd.ssa.gz       # keep *.len.gz
-ropebwt3 build -i human579.fmr -do human579.fmd   # convert to the faster static format
+wget https://openhgl.s3.us-east-1.amazonaws.com/human/human579/human579.fmd
+wget https://openhgl.s3.us-east-1.amazonaws.com/human/human579/human579.fmd.ssa
+wget https://openhgl.s3.us-east-1.amazonaws.com/human/human579/human579.fmd.len.gz
 
 # exact match
 echo CCAGGACCCCTGTCCAGTGTTAGACAGGAGCATGCAG | ropebwt3 mem -L human579.fmd -
@@ -171,7 +187,8 @@ name.  The number in the middle indicates haplotype with 0 in primary assembly,
 [zenodo]: https://zenodo.org/records/13948741
 [ncbi]: https://www.ncbi.nlm.nih.gov/
 [cncb]: https://www.cncb.ac.cn/?lang=en
-[aws-open]: https://registry.opendata.aws/
+[aws-open]: https://openhgl.s3.us-east-1.amazonaws.com/index.html
+[open-reg]: https://registry.opendata.aws
 [agc]: https://github.com/refresh-bio/agc
 [agc-rel]: https://github.com/refresh-bio/agc/releases
 [rb3]: https://github.com/lh3/ropebwt3
