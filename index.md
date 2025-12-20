@@ -33,16 +33,14 @@ bulk data is to use the AWS command-line interface (aws-cli), for example, with:
 # list all files (there are tens of files in total)
 aws s3 ls --no-sign-request --recursive s3://openhgl
 
-# dowload a file (24.8MB in size)
+# download a small sample file (24.8MB in size)
 aws s3 cp --no-sign-request s3://openhgl/misc/mtb/mtb152.tar.gz .
 ```
 If you are not familiar with aws-cli, you can [browse][aws-open] the files,
-find their links and download with `wget` or `curl`.
-
-Alternatively, you can download primary data [from Zenodo][zenodo]. However,
-due to limited space provided by Zenodo, derived files (e.g. FM-index in the
-static format) are not available. Downloading from Zenodo is much slower than
-from AWS.
+find their links and download with `wget` or `curl`. Alternatively, you can
+download primary data [from Zenodo][zenodo]. However, due to limited space
+provided by Zenodo, derived files (e.g. FM-index in the static format) are not
+available. Downloading from Zenodo is much slower than from AWS.
 
 ## <a name="usage"></a>Using OpenHGL Data
 
@@ -52,9 +50,11 @@ At present, OpenHGL provides genome sequences in the [AGC][agc] format and
 the corresponding FM-index in the [ropebwt3][rb3] format:
 
  * `human579.agc`: [AGC][agc] archive of assembly sequences
- * `human579.fmr.gz`: BWT sequence in the dynamic [ropebwt3][rb3] format (gzipped)
- * `human579.fmd.ssa.gz`: sampled suffix array (gzipped)
+ * `human579.fmd`: BWT in the static [ropebwt3][rb3] format (AWS only)
+ * `human579.fmd.ssa`: sampled suffix array (AWS only)
  * `human579.fmd.len.gz`: contig names and lengths
+ * `human579.fmr.gz`: BWT sequence in the dynamic [ropebwt3][rb3] format
+ * `human579.fmd.ssa.gz`: sampled suffix array (Zenodo only)
  * `human579.meta.tsv`: metadata including 1) assembly name, 2) the sex
    chromosome in the assembly, 3) sample name, 4) 1000 Genomes Project
    population code, 5) Simons Genomes Diversity Project region code and 6)
