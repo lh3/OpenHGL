@@ -28,7 +28,8 @@ Data][open-reg]. The primary data is also archieved [at Zenodo][zenodo].
 ## <a name="download"></a>Downloading OpenHGL Data
 
 OpenHGL is available in S3 bucket `s3://openhgl`. The fastest way to download
-bulk data is to use the AWS command-line interface (aws-cli), for example, with:
+bulk data is to use the AWS command-line interface ([aws-cli][aws-cli]), for
+example, with:
 ```sh
 # list all files (there are tens of files in total)
 aws s3 ls --no-sign-request --recursive s3://openhgl
@@ -40,7 +41,7 @@ If you are not familiar with aws-cli, you can [browse][aws-open] the files,
 find their links and download with `wget` or `curl`. Alternatively, you can
 download primary data [from Zenodo][zenodo]. However, due to limited space
 provided by Zenodo, derived files (e.g. FM-index in the static format) are not
-available. Downloading from Zenodo is much slower than from AWS.
+available. Downloading from Zenodo is also much slower than from AWS.
 
 ## <a name="usage"></a>Using OpenHGL Data
 
@@ -56,9 +57,8 @@ the corresponding FM-index in the [ropebwt3][rb3] format:
  * `human579.fmr.gz`: BWT sequence in the dynamic [ropebwt3][rb3] format
  * `human579.fmd.ssa.gz`: sampled suffix array (Zenodo only)
  * `human579.meta.tsv`: metadata including 1) assembly name, 2) the sex
-   chromosome in the assembly, 3) sample name, 4) 1000 Genomes Project
-   population code, 5) Simons Genomes Diversity Project region code and 6)
-   sample sex.
+   chromosome in the assembly, 3) sample name, 4) sample sex, 5) SGDP region
+   code, 6) 1KG population code and 7) country.
 
 ### <a name="getseq"></a>Retrieving genomic sequences
 
@@ -68,6 +68,8 @@ and retrieve sequences with
 ```sh
 # download AGC archive
 wget https://openhgl.s3.us-east-1.amazonaws.com/human/human579/human579.agc
+# or with aws-cli
+aws s3 cp s3://openhgl/human/human579/human579.agc .
 
 # list assembly names
 agc listset human579.agc
@@ -137,7 +139,7 @@ The [ropebwt3 paper][rb3-paper] provides additional examples.
 
 Criteria in sample selection:
 
- * Publicly available, though the data use policy may vary between sources
+ * Publicly available
  * Requiring PacBio HiFi for base accuracy
  * Requiring ultra-long Nanopore reads for assembly through difficult regions
  * Requiring trio or Hi-C data for chromosome-scale phasing
@@ -188,7 +190,8 @@ name.  The number in the middle indicates haplotype with 0 in primary assembly,
 [ncbi]: https://www.ncbi.nlm.nih.gov/
 [cncb]: https://www.cncb.ac.cn/?lang=en
 [aws-open]: https://openhgl.s3.us-east-1.amazonaws.com/index.html
-[open-reg]: https://registry.opendata.aws
+[open-reg]: https://registry.opendata.aws/openhgl/
+[aws-cli]: https://aws.amazon.com/cli
 [agc]: https://github.com/refresh-bio/agc
 [agc-rel]: https://github.com/refresh-bio/agc/releases
 [rb3]: https://github.com/lh3/ropebwt3
